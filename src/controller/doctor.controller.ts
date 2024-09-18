@@ -93,3 +93,62 @@ export const getDoctorById = async (req: Request, res: Response): Promise<Respon
     });
   }
 };
+// Controller to delete a doctor by ID
+export const deleteDoctorById = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const { id } = req.params;
+    const result = await Doctor.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Doctor deleted successfully",
+    });
+  } catch (err) {
+    console.error("Error deleting doctor:", err);
+    return res.status(500).json({
+      message: "Unable to delete doctor",
+      success: false,
+    });
+  }
+};
+// Controller to update a doctor by ID
+export const updateDoctorById = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const { id } = req.params;
+    // Validate and parse the update data
+    const validation = doctorSchema.safeParse(req.body);
+    if (!validation.success) {
+      return res.status(400).json({
+        message: "Validation failed",
+        errors: validation.error.errors,
+        success: false,
+      });
+    }
+
+    const updatedData = validation.data;
+
+    const doctor = await Doctor.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!doctor) {
+      return res.status(404).json({
+        success: false,
+        message: "Doctor not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      doctor,
+    });
+  } catch (err) {
+    console.error("Error updating doctor:", err);
+    return res.status(500).json({
+      message: "Unable to update doctor",
+      success: false,
+    });
+  }
+};
