@@ -2,19 +2,20 @@ import { Request, Response } from 'express';
 import { z } from 'zod';
 import Patient from '../models/admin/patients.model';
 
-// Zod schemas for validation
+// Zod validation schemas
 const patientSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email format'),
-  mobileNumber: z.string().min(10, 'Mobile number must be at least 10 characters long'),
-  age: z.number().int().positive('Age must be a positive number'),
-  gender: z.string().min(1, 'Gender is required'),
-  address: z.string().min(1, 'Address is required'),
-  medicalHistory: z.string().optional(),
+  firstname: z.string().min(1, 'First name is required'),
+  lastname: z.string().min(1, 'Last name is required'),
+  phone: z.string().min(10, 'Phone number must be at least 10 digits').max(15, 'Phone number must be at most 15 digits'),
+  email: z.string().email('Invalid email address'),
+  dob: z.string().nonempty('Date of birth is required'),
+  gender: z.enum(['male', 'female'], { errorMap: () => ({ message: 'Select a valid gender' }) }),
+  address:z.string().min(1, 'Street is required'),
+    
 });
 
 const patientIdSchema = z.object({
-  id: z.string().length(24, 'Invalid ID format'), // MongoDB ObjectId is 24 characters long
+  id: z.string().length(24, 'Invalid ID format'),
 });
 
 // Type guard for error handling
@@ -25,7 +26,6 @@ const isErrorWithMessage = (error: unknown): error is { message: string } => {
 // Create a new patient
 export const createPatient = async (req: Request, res: Response) => {
   try {
-    // Validate request body
     const parsedBody = patientSchema.parse(req.body);
 
     const patient = new Patient(parsedBody);
@@ -57,7 +57,6 @@ export const getPatients = async (req: Request, res: Response) => {
 // Get a patient by ID
 export const getPatientById = async (req: Request, res: Response) => {
   try {
-    // Validate request params
     const { id } = patientIdSchema.parse(req.params);
 
     const patient = await Patient.findById(id);
@@ -77,9 +76,8 @@ export const getPatientById = async (req: Request, res: Response) => {
 // Update a patient by ID
 export const updatePatient = async (req: Request, res: Response) => {
   try {
-    // Validate request params and body
     const { id } = patientIdSchema.parse(req.params);
-    const updatedData = patientSchema.partial().parse(req.body); // Use partial() for partial updates
+    const updatedData = patientSchema.partial().parse(req.body); 
 
     const patient = await Patient.findByIdAndUpdate(id, updatedData, { new: true });
     if (!patient) {
@@ -98,7 +96,6 @@ export const updatePatient = async (req: Request, res: Response) => {
 // Delete a patient by ID
 export const deletePatient = async (req: Request, res: Response) => {
   try {
-    // Validate request params
     const { id } = patientIdSchema.parse(req.params);
 
     const patient = await Patient.findByIdAndDelete(id);
