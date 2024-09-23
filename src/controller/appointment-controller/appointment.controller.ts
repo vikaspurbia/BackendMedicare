@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Appointment from '../models/admin/appointment.model';
+import Appointment from 'src/models/appointment-model/appointment.model';
 import { z } from 'zod';
 
 // Zod schema for appointment validation

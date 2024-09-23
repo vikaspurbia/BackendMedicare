@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document ,model} from 'mongoose';
 
 export interface IDoctor extends Document {
   name: string;
@@ -29,4 +29,8 @@ const DoctorSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<IDoctor>('Doctor', DoctorSchema);
+const Doctor = model<IDoctor>('Doctor', DoctorSchema);
+
+export default Doctor;
+
+ 

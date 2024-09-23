@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import Patient from '../models/admin/patients.model';
+import Patient from '../../models/patient-model/patients.model';
 
 // Zod validation schemas
 const patientSchema = z.object({

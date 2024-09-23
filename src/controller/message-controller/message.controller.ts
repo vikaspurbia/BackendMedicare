@@ -1,7 +1,7 @@
 // controllers/messageController.ts
 import { Request, Response } from 'express';
 import { z, ZodError } from 'zod';
-import Message from '../models/admin/message.model';
+import Message from 'src/models/message-model/message.model';
 
 // Define Zod schema for validation
 const messageSchema = z.object({
