@@ -4,12 +4,12 @@ import {
   deleteAppointment,
   getAllAppointments,
   updateAppointment,
-} from '../../controller/appointment.controller';
+} from '../../controller/admin/appointment.controller';
 import { authenticate } from '../../middleware/auth.middleware';
 
 const router = Router();
 
-router.post('/create', authenticate(['admin']), createAppointment);
+router.post('/create', createAppointment);
 router.get('/', authenticate(['admin']), getAllAppointments);
 router.delete('/:id', authenticate(['admin']), deleteAppointment);
 router.put('/:id', authenticate(['admin']), updateAppointment);

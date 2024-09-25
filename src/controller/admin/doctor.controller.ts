@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Doctor from '../../models/doctor-model/doctor.model';
+import Doctor from '../../models/admin/doctor.model';
 import { z } from 'zod';
 
 // Zod schema for doctor validation

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import Patient from '../../models/patient-model/patients.model';
+import Patient from '../../models/admin/patients.model';
 
 // Zod validation schemas
 const patientSchema = z.object({
@@ -10,7 +10,8 @@ const patientSchema = z.object({
   email: z.string().email('Invalid email address'),
   dob: z.string().nonempty('Date of birth is required'),
   gender: z.enum(['male', 'female'], { errorMap: () => ({ message: 'Select a valid gender' }) }),
-  address:z.string().min(1, 'Street is required'),
+  address:z.string().min(1, 'Address is required'),
+  medical:z.string().min(1, 'Medical is required'),
     
 });
 

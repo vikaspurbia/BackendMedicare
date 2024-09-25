@@ -4,10 +4,10 @@ import connectDB from './config/db';
 import userRoutes from './routes/admin/user.route';
 import roleRoutes from './routes/admin/role.route';
 import dotenv from 'dotenv';
-import appointmentRoutes from './routes/appointment-route/appointment.route';
-import doctorRoutes from './routes/doctor-route/doctor.route';
-import messageRoutes from './routes/message-route/message.route';
-import patientRoutes from './routes/patient-route/patients.route'; 
+import appointmentRoutes from './routes/admin/appointment.route';
+import doctorRoutes from './routes/admin/doctor.route';
+import messageRoutes from './routes/admin/message.route';
+import patientRoutes from './routes/admin/patients.route'; 
 
 dotenv.config();
 

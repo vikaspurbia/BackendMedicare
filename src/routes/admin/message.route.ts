@@ -1,10 +1,10 @@
 import express from 'express';
-import { getMessages, createMessage, deleteMessage, updateMessage } from '../controller/message.controller';
+import { getMessages, createMessage, deleteMessage, updateMessage } from '../../controller/admin/message.controller';
 import { authenticate } from '../../middleware/auth.middleware';
 
 const router = express.Router();
 
-router.post('/create-message', authenticate(['admin']), createMessage);
+router.post('/create-message', createMessage);
 
 router.get('/', authenticate(['admin']), getMessages);
 router.delete('/messages/:id', authenticate(['admin']), deleteMessage);

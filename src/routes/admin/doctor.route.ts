@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createDoctor, getAllDoctors, getDoctorById, deleteDoctorById, updateDoctorById } from '../../controller/doctor.controller';
+import { createDoctor, getAllDoctors, getDoctorById, deleteDoctorById, updateDoctorById } from '../../controller/admin/doctor.controller';
 import { authenticate } from '../../middleware/auth.middleware';
 
 const router = Router();

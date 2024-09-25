@@ -5,12 +5,12 @@ import {
   getPatientById,
   updatePatient,
   deletePatient
-} from '../../controller/patients.controller';
+} from '../../controller/admin/patients.controller';
 import { authenticate } from '../../middleware/auth.middleware'; // Import the authenticate middleware
 
 const router = express.Router();
 
-// Apply authentication middleware for these routes
+// authentication middleware 
 router.post('/create', authenticate(['admin']), createPatient);
 router.get('/', authenticate(['admin']), getPatients);
 router.get('/:id', authenticate(['admin']), getPatientById);
