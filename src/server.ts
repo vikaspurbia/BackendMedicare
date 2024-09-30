@@ -30,3 +30,5 @@ app.use('/api/patients', patientRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Export the app as a Vercel serverless function
+export default app;
