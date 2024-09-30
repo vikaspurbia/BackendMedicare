@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import connectDB from './config/db';
-import userRoutes from './routes/admin/user.route';
-import roleRoutes from './routes/admin/role.route';
+import userRoutes from './api/user.route';
+import roleRoutes from './api/role.route';
 import dotenv from 'dotenv';
-import appointmentRoutes from './routes/admin/appointment.route';
-import doctorRoutes from './routes/admin/doctor.route';
-import messageRoutes from './routes/admin/message.route';
-import patientRoutes from './routes/admin/patients.route'; 
+import appointmentRoutes from './api/appointment.route';
+import doctorRoutes from './api/doctor.route';
+import messageRoutes from './api/message.route';
+import patientRoutes from './api/patients.route'; 
 
 dotenv.config();
 

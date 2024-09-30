@@ -5,8 +5,8 @@ import {
   getPatientById,
   updatePatient,
   deletePatient
-} from '../../controller/admin/patients.controller';
-import { authenticate } from '../../middleware/auth.middleware'; // Import the authenticate middleware
+} from '../controller/admin/patients.controller';
+import { authenticate } from '../middleware/auth.middleware'; // Import the authenticate middleware
 
 const router = express.Router();
 

@@ -4,8 +4,8 @@ import {
   deleteAppointment,
   getAllAppointments,
   updateAppointment,
-} from '../../controller/admin/appointment.controller';
-import { authenticate } from '../../middleware/auth.middleware';
+} from '../controller/admin/appointment.controller';
+import { authenticate } from '../middleware/auth.middleware';
 
 const router = Router();
 
